@@ -1,14 +1,14 @@
 const nanoid = require('nanoid')
 const express = require("express");
 const router = express.Router();
-let location = require('../data/location.json');
+let places = require('../data/location.json');
 let func = require('../function/function')
 
 router.use(express.json());
 
 
 
-let data=[...location.resturants,...location.services,...location.kids,...location.grocery]
+let data=places.location
 
 router.get('/',(req,res)=>{
 
@@ -25,7 +25,5 @@ data.forEach(item=>{
 }
   
 )})
-
-
 
 module.exports = router;
