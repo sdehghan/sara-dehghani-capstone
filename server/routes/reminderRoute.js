@@ -1,29 +1,47 @@
-const nanoid = require('nanoid')
 const express = require("express");
 const router = express.Router();
-let places = require('../data/location.json');
+let locations = require('../data/location.json');
+const format = require('date-fns/format')
 let func = require('../function/function')
-
+var parseISO = require('date-fns/parseISO')
 router.use(express.json());
 
 
+reminderList=[]
 
-let data=places.location
-
+router.post('/',(req,res)=>{
+  
+  let reminderItem =locations.find(item =>req.body.name === item.name)
+      if(reminderItem){
+        console.log(req.body)
+        console.log(req.body.reminder)
+        reminderItem.event=req.body.event
+        let reminderTime=format(parseISO(req.body.reminder),'MM/dd/yyyy')
+        reminderItem.reminder=reminderTime;
+        reminderList.push(reminderItem)
+        res.send(reminderItem)
+        }
+        else res.status(400).json({error:"error"})
+      })
+  
 router.get('/',(req,res)=>{
 
-data.forEach(item=>{
-  if (item.reminder){
-    
-       let value =func.dateCalc(item.reminder )
+// locations.forEach(item=>{
+  if (location.reminder){
+       let value =func.dateCalc(item.reminder)
+       console.log(value)
        if (value==0){
            res.send(true)
        }else{
            res.send(false)
        }
   }
-}
-  
-)})
+})
+
+
+
+   router.get('/',(req,res)=>{
+     
+   })
 
 module.exports = router;

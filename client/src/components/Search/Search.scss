@@ -4,8 +4,8 @@
         padding-left:20px;
         border-radius:50px;
         border:2px solid rgb(228, 220, 220);
-        width: 400px;
-        margin-right:20px;
+        width: 500px;
+        margin-right:10px;
         height:40px;
     }
     .search-submit{
@@ -24,4 +24,40 @@
         margin-top:32px;
        flex-wrap: wrap;
     
+    }
+    .modal{
+        position: absolute;
+        overflow: auto;
+        background-color: white;
+        padding: 10px 30px;
+        top: 50%;
+        bottom: 0px;
+        left: 50%;
+        right: 0px;
+        width: 250px;
+        height: 100px;
+        transform: translate(-50%, -50%);
+        outline: none;
+        border-radius:20px;
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+    }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-button{
+        width:50px;
+        height:30px;
+        align-self: center;
+        border-radius:10px;
+        outline: none;
+    }
+    .modal-text{
+        align-self: center;
     }

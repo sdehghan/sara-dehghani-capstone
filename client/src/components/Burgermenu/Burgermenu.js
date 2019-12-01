@@ -10,26 +10,18 @@ class Burgermenu extends React.Component {
         itemTwo:"Services",
         itemThree:"Kids",
         itemFour:"Grocery",
-        show:false
     }
-  showSettings=(event)=>{
-    event.preventDefault();
-    this.setState({show:true})
-  }
  
-
   render () {
     
     // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
     return (
-      <Menu >
-       <Link to="/" onClick={ this.showSettings } name="name" className="menu-item--small" href="">Locations</Link>
-        {this.state.show? <>
+      <Menu isOpen={ false }>
+       <Link to="/" name="name" className="menu-item" href="">Locations</Link>
         <Link to="/location/resturants"className="menu-item">{this.state.itemOne}</Link><br></br>
         <Link to="/location/services"  className="menu-item">{this.state.itemTwo}</Link><br></br>
         <Link to="/location/kids"  className="menu-item" >{this.state.itemThree}</Link><br></br>
-        <Link to="/location/groceries" className="menu-item" >{this.state.itemFour}</Link></>
-        :null}
+        <Link to="/location/groceries" className="menu-item" >{this.state.itemFour}</Link>
       </Menu>
     );
   }
