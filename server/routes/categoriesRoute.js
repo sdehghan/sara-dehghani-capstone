@@ -15,7 +15,7 @@ let savedLocations=[]
    if(savedItem && !value){
      savedLocations.push(savedItem)
      res.send(savedItem)
-     }
+     }else res.status(400).json({error:"item already saved"})
   })
 
 

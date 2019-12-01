@@ -1,6 +1,7 @@
 import React from "react";
 import DatePicker from "react-datepicker";
- 
+import { format, compareAsc ,distanceInWords } from 'date-fns'
+import PropTypes from 'prop-types'
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 // CSS Modules, react-datepicker-cssmodules.css
@@ -10,10 +11,12 @@ class Datepicker extends React.Component {
   state = {
     startDate: new Date()
   };
- 
+  handleSelect =(event)=>{
+    this.props.setDate(event);
+  }
   handleChange = date => {
     this.setState({
-      startDate: date
+      startDate:date
     });
   };
  
@@ -21,6 +24,7 @@ class Datepicker extends React.Component {
     return (
       <DatePicker 
         selected={this.state.startDate}
+        onSelect={this.handleSelect}
         onChange={this.handleChange}
         placeholderText="Please enter a date"
       />

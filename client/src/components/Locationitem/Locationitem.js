@@ -1,8 +1,15 @@
 import React from 'react'
 import './Locationitem.scss'
-import Date from '../Datepicker/Datepicker'
+
 
 class Locationitem extends React.Component{
+ 
+    clickHandler=(event)=>{
+        event.preventDefault()
+        this.props.handleOpenModal();
+        this.props.getName(this.props.data.name)
+    }
+
 
     render(){
         return(
@@ -16,8 +23,9 @@ class Locationitem extends React.Component{
                <div><span className="item__title">Phone:</span><span className="item__text">{this.props.data.phone}</span></div><br></br>
                <div><span className="item__title">Website:</span><a className="item__text" href={this.props.data.website}>{this.props.data.name}</a></div><br></br>
                <div><span className="item__title">Reminder:</span><span className="item__text">{this.props.data.reminder}</span>
-               <Date></Date></div><br></br>
+               </div><br></br>
                <div><span className="item__title">Event:</span><span className="item__text">{this.props.data.event}</span></div><br></br>
+               <button onClick={this.clickHandler}>Set Reminder</button>
               </div>
             </section>
         )

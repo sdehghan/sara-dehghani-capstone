@@ -6,11 +6,10 @@ import axios from 'axios'
 class Locationitem extends React.Component{
 
     clickHandler =()=>{
+     
       if (this.props.saveLocation) {
           this.props.saveLocation(this.props.data.name);
       }
-      
-
     }
     render(){
         

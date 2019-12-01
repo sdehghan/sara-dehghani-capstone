@@ -7,3 +7,56 @@
    flex-wrap: wrap;
 
 }
+
+.reminder{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.reminder-modal{
+    position: absolute;
+    overflow: auto;
+    background-color: white;
+    padding: 10px 30px;
+    top: 50%;
+    bottom: 0px;
+    left: 50%;
+    right: 0px;
+    width: 350px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    outline: none;
+    border-radius:20px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+.reminder-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.reminder-button{
+    width:50px;
+    height:30px;
+    align-self: center;
+    border-radius:10px;
+    outline: none;
+    
+}
+.reminder-text{
+    font-size:15px;
+    margin-right:5px;
+}
+
+.reminder-one{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.input{
+    border-radius:20px;
+}

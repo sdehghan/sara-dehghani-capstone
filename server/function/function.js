@@ -1,11 +1,16 @@
+const { format} = require('date-fns');
+var formatDistanceToNow = require('date-fns/formatDistanceToNow')
+// var compareAsc = require('date-fns/compareAsc')
+var differenceInCalendarDays = require('date-fns/differenceInCalendarDays')
+
 const dateCalc=(reminder)=>{
-let today=new Date();
-console.log(today)
-let reminderTime=new Date(reminder)
-console.log(reminderTime)
-var Difference_In_Time = today.getTime()-reminderTime.getTime(); 
-var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
-return Math.floor(Difference_In_Days);
+
+console.log(new Date(reminder))
+console.log(new Date())
+
+let value=differenceInCalendarDays(new Date(reminder),new Date())
+console.log(value)
+ return value
 }
 
 module.exports.dateCalc= dateCalc;

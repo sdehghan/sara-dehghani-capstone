@@ -11,7 +11,7 @@ class  App extends React.Component {
      <BrowserRouter>
         <Switch >
          <Route path="/" exact component={Search}></Route>
-         <Route path="/location/:category" component={Locationpage}></Route>
+         <Route exact path="/location/:category" component={Locationpage}/>
         </Switch>
        </BrowserRouter>
     </div>
