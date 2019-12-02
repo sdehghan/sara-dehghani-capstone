@@ -1,3 +1,31 @@
+
+.menu-item{
+  background:
+     linear-gradient(
+       to right,
+       var(--mainColor) 0%,
+       var(--mainColor) 5px,
+       transparent 5px,
+     );
+     color: #c0bebe;
+    background-repeat: repeat-x;
+    background-size: 100%;
+  padding-left: 10px;
+  text-decoration: none;
+}
+
+.menu-item:hover {
+  background:
+     linear-gradient(
+       to right,
+       var(--mainColor) 0%,
+       var(--mainColor) 5px,
+       transparent
+     );
+
+}
+
+
 .bm-burger-button {
     position: fixed;
     width: 36px;
@@ -39,8 +67,8 @@
   /* General sidebar styles */
   .bm-menu {
     background: rgb(233, 211, 200);
-    padding: 2.5em 1.5em 0;
-    font-size: 1.15em;
+    padding: 0.5em 0.8em 0;
+    font-size: 1.2em;
   }
   
   /* Morph shape necessary with bubble or elastic */
@@ -51,7 +79,9 @@
   /* Wrapper for item list */
   .bm-item-list {
     color: #b8b7ad;
-    padding: 0.8em;
+    padding: 0.2em;
+    width: 100%;
+    text-align: left;
   }
   
   /* Individual item */
@@ -67,7 +97,14 @@
     color:  #686464;
     font-size:20px;
     text-decoration: none;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+   
+  }
+  .menu-item:hover{
+    outline: none;
+  }
+  .menu-item:focus{
+    outline: none;
   }
   
   .menu-item--small{
@@ -78,18 +115,21 @@
   }
   .menu-itemchange{
     font-size:30px;
-    margin-bottom:40px
+    margin-bottom:40px;
+    width: 100%;
+    padding-bottom:20px;
+    border-bottom: 1px solid #807b7b;;
   }
- 
-  .menu-item--small:focus{
-     outline: none;
-  }
-  .menu-item--small:hover{
-    outline: none;
+
+//   .menu-item--small:focus{
+//      outline: none;
+//   }
+//   .menu-item--small:hover{
+//     outline: none;
     
- }
+//  }
  .bm-overlay {
-    background:white;
+    background:rgb(148, 145, 145);
   }
 
 
