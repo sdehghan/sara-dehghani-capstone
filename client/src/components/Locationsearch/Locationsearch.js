@@ -1,6 +1,6 @@
 import React from 'react'
 import './Locationsearch.scss'
-import axios from 'axios'
+
 
 
 class Locationitem extends React.Component{

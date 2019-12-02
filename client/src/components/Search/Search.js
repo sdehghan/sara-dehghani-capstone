@@ -40,7 +40,7 @@ class Search extends React.Component{
   submitHandler=(event)=>{
     event.preventDefault();
      const name=event.target.name.value
-     let newLoc =this.state.loc.filter(loc=>loc.name==name)
+     let newLoc =this.state.loc.filter(loc=>loc.name.toLowerCase()==name.toLowerCase())
      this.setState({loc:newLoc})
     
   }
@@ -48,7 +48,6 @@ class Search extends React.Component{
     event.preventDefault();
     this.setState({loc:this.state.staticLoc,showModal:!this.state.showModal})
   }
-
 
   render(){
       return(
@@ -70,7 +69,6 @@ class Search extends React.Component{
            <p className="modal-text">{this.state.modalData} </p>
            <button className="modal-button" onClick={this.handleCloseModal}>Ok</button>
         </ReactModal>
-      
         </>
       )
   }

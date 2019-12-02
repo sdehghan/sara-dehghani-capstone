@@ -4,6 +4,7 @@
     height: 80px;
     position: relative;
     border-bottom:0.5px solid #ebe0e0;
+    background-color:rgb(229, 226, 226);
 
     &__logo{
         width: 80px;
@@ -23,5 +24,16 @@
         border:none;
         color: rgb(94, 91, 91);
     }
-
+    &__linkbox{
+        display: flex;
+        justify-content:flex-end;
+        align-items: center;
+        height: 100%;
+        width:90%;
+    }
+   &__link{
+       text-decoration: none;
+       color:rgb(94, 91, 91);
+       margin-right:40px;
+    }
 }
