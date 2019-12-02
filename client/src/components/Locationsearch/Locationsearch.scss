@@ -38,5 +38,16 @@
        border:none;
        color:rgb(94, 91, 91);
        outline: none;
+       box-shadow: 0 5px #999;
+       padding: 5px 15px;
+       margin-right:5px;
    }
+   &__button:hover{
+    background-color: rgb(94, 91, 91);
+   }
+   &__button:active {
+    background-color:#f0c4a3;
+    box-shadow: 0 5px rgb(94, 91, 91);
+    transform: translateY(4px);
+  }
 }
