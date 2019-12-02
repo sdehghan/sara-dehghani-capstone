@@ -64,7 +64,7 @@
   /* Styling of overlay */
  
   .menu-item{
-    color:  #999292;
+    color:  #686464;
     font-size:20px;
     text-decoration: none;
     margin-bottom: 30px;
@@ -73,8 +73,12 @@
   .menu-item--small{
     font-size:25px;
     text-decoration: none;
-    color: #7b7676;
+    color: #636060;
     
+  }
+  .menu-itemchange{
+    font-size:30px;
+    margin-bottom:40px
   }
  
   .menu-item--small:focus{

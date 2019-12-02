@@ -10,7 +10,11 @@ class Locationitem extends React.Component{
         this.props.getName(this.props.data.name)
     }
 
-
+   deleteHandler=(event)=>{
+        event.preventDefault()
+        this.props.deleteItem(this.props.data.name)
+    }
+   
     render(){
         return(
             <section className="item">
@@ -25,7 +29,10 @@ class Locationitem extends React.Component{
                <div><span className="item__title">Reminder:</span><span className="item__text">{this.props.data.reminder}</span>
                </div><br></br>
                <div><span className="item__title">Event:</span><span className="item__text">{this.props.data.event}</span></div><br></br>
-               <button onClick={this.clickHandler}>Set Reminder</button>
+               <div className="item__allbutton">
+                <button  className="item__button" onClick={this.clickHandler}>Set Reminder</button>
+                <button  className="item__button" onClick={this.deleteHandler}>Delete</button>
+               </div>
               </div>
             </section>
         )

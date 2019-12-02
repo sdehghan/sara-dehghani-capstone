@@ -1,7 +1,5 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-import { format, compareAsc ,distanceInWords } from 'date-fns'
-import PropTypes from 'prop-types'
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 // CSS Modules, react-datepicker-cssmodules.css
