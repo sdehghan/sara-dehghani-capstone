@@ -10,7 +10,7 @@
       "event":"",
       "id":"zbk3u1QWF9pkjw32Z42of",
       "category": "resturants",
-      "displayed":false
+      "displayed":0
     },
     {
       "name":"Kit Kat Italian Bar",
@@ -22,7 +22,7 @@
       "event":"",
       "id":"-uVbq-s2XRHaMfLciJjFr",
       "category":"resturants",
-      "displayed":false
+      "displayed":0
   
     },
     {
@@ -35,7 +35,7 @@
       "event":"",
       "id":"1fcN9MIkaT6Xzs_bpCQMD",
       "category":"resturants",
-      "displayed":false
+      "displayed":0
     },
     {
       "name":"Alioli Ristorante",
@@ -47,7 +47,7 @@
       "event":"",
       "id":"Ce1ysGAuWxUwKcpVaYZVG",
       "category":"resturants",
-      "displayed":false
+      "displayed":0
     },
     {
       "name":"Pho Metro",
@@ -59,7 +59,7 @@
       "event":"",
       "id":"GLCsJr1fmhhV_NLylnlq6",
       "category":"resturants",
-      "displayed":false
+      "displayed":0
     },
     {
         "name":"Daisy Nails & Spa",
@@ -71,7 +71,7 @@
         "event":"",
         "id":"B8TG2mCwapO5tkZuvfzVK",
         "category":"services",
-        "displayed":false
+        "displayed":0
     },
     {
         "name":"Salon Solis",
@@ -83,7 +83,7 @@
         "event":"",
         "id":"CC5zJ9HBsigOTXFBKKm6H",
         "category":"services",
-        "displayed":false
+        "displayed":0
     },
     {
         "name":"Core Wellness Centre",
@@ -95,7 +95,7 @@
         "event":"",
         "id":"6ouu9cjv7rZgQsqiUXZg7",
         "category":"services",
-        "displayed":false
+        "displayed":0
       },
       {
         "name":"The Ritz-Carlton, Toronto",
@@ -107,7 +107,7 @@
         "event":"",
         "id":"fEyo0hTu08RI6NvkfyPcx",
         "category":"services",
-        "displayed":false
+        "displayed":0
       },
       {
         "name":"LA Fitness",
@@ -119,7 +119,7 @@
         "event":"",
         "id":"xRPlVvEOvZ7j62o0PfN_w",
         "category":"services",
-        "displayed":false
+        "displayed":0
       },
       {
         "name":"Hop Hop Jump",
@@ -131,7 +131,7 @@
         "event":"",
         "id":"y09NN5QUIep1lQaTahoWd",
         "category":"kids",
-        "displayed":false
+        "displayed":0
       },
       {
         "name":"Kids Fun Town",
@@ -143,7 +143,7 @@
         "event":"",
         "id":"5zUx4mzkqdmUqM5leJtaL",
         "category":"kids",
-        "displayed":false
+        "displayed":0
       },
       {
         "name":"Ripley's Aquarium of Canada",
@@ -155,7 +155,7 @@
         "event":"",
         "id":"vjNHGzG625QkiPH7fh6L_",
         "category":"kids",
-        "displayed":false
+        "displayed":0
       },
       {
         "name":"Ontario Science Centre",
@@ -167,7 +167,7 @@
         "event":"",
         "id":"j-TPkRpxQgCsRJ9fAGTSg",
         "category":"kids",
-        "displayed":false
+        "displayed":0
       },
       {
         "name":"Toronto Zoo",
@@ -178,7 +178,7 @@
         "event":"",
         "id":"Y-jCRJKhRqP8suMBUF3Fr",
         "category":"kids",
-        "displayed":false
+        "displayed":0
       },
       {
         "name":"Rocco's No Frills",
@@ -190,7 +190,7 @@
         "event":"",
         "id":"Tzz5wxjprCXqOiPx4y3KS",
         "category":"groceries",
-        "displayed":false
+        "displayed":0
       },
       {
         "name":"Metro",
@@ -202,7 +202,7 @@
         "event":"",
         "id":"A4DKS6duU__GDveBvfQso",
         "category":"groceries",
-        "displayed":false
+        "displayed":0
       },
       {
         "name":"Food Basics",
@@ -214,7 +214,7 @@
         "event":"",
         "id":"CEnZIiC6t3ctf_QBhUaEg",
         "category":"groceries",
-        "displayed":false
+        "displayed":0
       },
       {
         "name":"Longo's Leaside",
@@ -226,7 +226,7 @@
         "event":"",
         "id":"I3eZBOf-ILIko_xq9-Aah",
         "category":"groceries",
-        "displayed":false
+        "displayed":0
       },
       {
         "name":"Loblaws",
@@ -238,7 +238,7 @@
         "event":"",
         "id":"P0XjoTizdsEMZJ2VZ-SAu",
         "category":"groceries",
-        "displayed":false
+        "displayed":0
       }
     ]
   

@@ -4,23 +4,24 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
- 
+
 class Datepicker extends React.Component {
   state = {
-    startDate: new Date()
+    // startDate: new Date()
+    startDate: ""
   };
-  handleSelect =(event)=>{
+  handleSelect = (event) => {
     this.props.setDate(event);
   }
   handleChange = date => {
     this.setState({
-      startDate:date
+      startDate: date
     });
   };
- 
+
   render() {
     return (
-      <DatePicker 
+      <DatePicker
         selected={this.state.startDate}
         onSelect={this.handleSelect}
         onChange={this.handleChange}

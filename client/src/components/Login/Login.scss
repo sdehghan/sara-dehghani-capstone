@@ -1,0 +1,56 @@
+.image-login{
+    // background:url('../../assets/dylan-nolte-SH_IjrKwG8c-unsplash.jpg');
+    background-color:rgb(187, 177, 177);;
+    height: 100vh;
+}
+.login{
+   align-items: center;
+   justify-content: center;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   height: 100%;
+
+&__input-user{
+   
+    padding-left:20px;
+    border-radius:50px;
+    border:2px solid rgb(228, 220, 220);
+    width: 200px;
+    margin-right:10px;
+    margin-left:10px;
+    height:40px;
+}
+&__input-user:focus{
+    outline:none;
+ 
+ }
+
+&__button-user{
+    width:60px;
+    height:30px;
+    background-color:#f0c4a3;
+    border-radius:20px;
+    color: rgb(94, 91, 91);
+    border: none;
+    margin-top:20px;
+    margin-left:60px;
+
+   }
+&__button-user:focus{
+   outline:none;
+
+}
+&__button-user:hover{
+    outline:none;
+ 
+ }
+&__box{
+    display: flex;
+    margin-top:20px;
+}
+&__label{
+    align-self: center;
+    color:rgb(59, 55, 55);
+  }
+}
