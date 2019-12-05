@@ -7,34 +7,43 @@ var parseISO = require('date-fns/parseISO')
 router.use(express.json());
 
 
-reminderList=[]
+reminderList = []
 
-router.post('/',(req,res)=>{
-  let reminderItem =locations.find(item =>req.body.name.toLowerCase() === item.name.toLowerCase())
-      if(reminderItem){
-        console.log(req.body)
-        console.log(req.body.reminder)
-        reminderItem.event=req.body.event
-        let reminderTime=format(parseISO(req.body.reminder),'MM/dd/yyyy')
-        reminderItem.reminder=reminderTime;
-        reminderList.push(reminderItem)
-        res.send(reminderItem)
-        }
-        else res.status(400).json({error:"error"})
-      })
+//posting reminder
+router.post('/', (req, res) => {
+  let reminderItem = locations.find(item => req.body.name.toLowerCase() === item.name.toLowerCase())
+  if (reminderItem) {
+    //create reminder
+    reminderItem.event = req.body.event
+    let reminderTime = format(parseISO(req.body.reminder), 'MM/dd/yyyy')
+    reminderItem.reminder = reminderTime;
+   //
+    let repeatItem=reminderList.find(item=>req.body.name.toLowerCase() === item.name.toLowerCase())
+    if (repeatItem){
+      reminderItem.displayed=0;
+      repeatItem=reminderItem
+      // console.log('this item already exist',repeatItem)
+      res.send(repeatItem)
+    }else{
+      reminderList.push(reminderItem)
+      // console.log('this is new',reminderItem)
+      res.send(reminderItem)
+    }
+  }
+  else res.status(400).json({ error: "error" })
+})
+
+
+router.delete('/:id', (req, res) => {
+  console.log(reminderList)
+  reminderList.map(item => {
+     if (req.params.id === item.id){
+       item.event=""
+       item.reminder=""
+       res.send(item) 
+     }
+  });
   
-// router.get('/',(req,res)=>{
-
-// // locations.forEach(item=>{
-//   // if (location.reminder){
-//        let value =func.dateCalc(item.reminder)
-//        console.log(value)
-//        if (value==0){
-//            res.send(true)
-//        }else{
-//            res.send(false)
-//        }
-//   // }
-// })
+})
 
 module.exports = router;

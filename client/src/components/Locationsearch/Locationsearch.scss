@@ -1,8 +1,8 @@
 .item{
-    width: 200px;
+    width: 260px;
     height: 500px;
-    margin-right:20px;
     font-size:12px;
+    margin-top:20px;
     &__img{
         width: 180px;
         height: 150px;
@@ -17,9 +17,13 @@
         border-radius:20px;
     }
     &__box{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         text-align: left;
         padding-left:10px;
         width: 200px;
+        height: 180px;
     }
 
     &__title{
@@ -41,6 +45,12 @@
        box-shadow: 0 5px #999;
        padding: 5px 15px;
        margin-right:5px;
+       padding-right:10px;
+       text-align: center;
+       font-weight: bold ;
+       box-shadow: #8a8181;
+       width:80px;
+       height:30px;
    }
    &__button:hover{
     background-color: rgb(94, 91, 91);

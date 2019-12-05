@@ -1,13 +1,21 @@
 .item{
-    width: 250px;
+    width: 300px;
     height: 500px;
-    margin-right:20px;
     font-size:12px;
+    display: flex;
+    flex-direction: column;
     &__img{
         width: 180px;
         height: 150px;
-        padding-bottom:20px;
-       
+        padding-bottom:20px; 
+    }
+    &__box-two{
+        width:150px;
+        margin-top:10px;
+        margin-left:5px;
+        padding:10px;
+        margin-bottom:15px;
+        border:1px solid rgb(228, 216, 216);;
     }
     &__photo{
         width: 100%;
@@ -17,9 +25,13 @@
         border-radius:20px;
     }
     &__box{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         text-align: left;
         padding-left:10px;
         width: 200px;
+        height:150px;
     }
 
     &__title{
@@ -32,5 +44,27 @@
         padding-left:5px;
 
     }
-   
+    &__allbutton{
+      display: flex;
+      align-items: center;
+    }
+    &__button-small{
+       background-color:#f7ebe1;
+       border-radius:30px;
+       border:none;
+       color:rgb(94, 91, 91);
+       outline: none;
+       box-shadow: 0 5px #999;
+       padding: 5px 15px;
+       margin-right:5px;
+       padding-right:10px;
+       text-align: center;
+       font-weight: bold ;
+       box-shadow: #8a8181;
+       width:65px;
+       height:20px;
+    }
+   &__button-position{
+       margin-left:50px;
+   }
 }
