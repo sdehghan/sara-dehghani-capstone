@@ -7,11 +7,11 @@ import { NavLink,Link } from 'react-router-dom'
 
 class Header extends React.Component {
 
-    submitHandler = (event) => {
-        event.preventDefault();
-        let name = event.target.name.value;
-        this.props.addLocation(name)
-    }
+    // submitHandler = (event) => {
+    //     event.preventDefault();
+    //     let name = event.target.name.value;
+    //     this.props.addLocation(name)
+    // }
    
     render() {
     
@@ -20,7 +20,7 @@ class Header extends React.Component {
                 <Burgermenu />
                 <img src={logo} className="header__logo" alt="logo" />
                 <div className="header__linkbox">
-                    <NavLink className="header__link" to="/search">Home</NavLink>
+                <NavLink className="header__link" to="/search">Home</NavLink>
                 </div>
                 <button className="header__button-logout"><Link className="header__button-link" to="/" >LOGOUT</Link> </button>
                 <button className="header__button-user">USER</button>

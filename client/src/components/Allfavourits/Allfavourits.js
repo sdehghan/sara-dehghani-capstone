@@ -4,7 +4,6 @@ import './Allfavourits.scss'
 import axios from 'axios'
 import Header from '../Header/Header';
 import ReactModal from 'react-modal';
-import cron from "node-cron";
 import Date from '../Datepicker/Datepicker'
 
 
@@ -12,31 +11,33 @@ class Allfavourits extends React.Component {
 
   state = {
     selected: "select category",
+    staticLoc: [],
     list: [],
     showModal: false,
     showModalTwo: false,
-    displayed: false,
-    eventValue:''
+    eventValue: ''
   }
 
   componentDidMount() {
     axios.get('http://localhost:8080/location')
       .then(response => {
-        this.setState({ list: response.data })
-      });
+        this.setState({ list: response.data, staticLoc: response.data })
+      }).catch(err => console.log(err))
   }
   //select drop down
   changeHandler = (e) => {
-    let data = this.state.list.filter(item => item.category.toLowerCase() === e.target.value.toLowerCase())
-    if (e.target.value !== "select category") {
-      this.setState({ selected: e.target.value, list: data });
-    } else if (e.target.value == "select category") {
-      axios.get('http://localhost:8080/location')
-        .then(response => {
-          this.setState({selected:"",list: response.data})
-        });
+    let value=e.target.value;
+    this.setState({ selected: e.target.value });
+    axios.get('http://localhost:8080/location')
+    .then(response=>{
+    if (value !== "select category") {
+      let data = response.data.filter(item => item.category.toLowerCase() === value.toLowerCase())
+      this.setState({ list: data });
+    } else if (value === "select category") {
+          this.setState({list: response.data })
+        }}).catch(err => console.log(err))
     }
-  }
+  
   //refresh button
   refreshList = (e) => {
     e.preventDefault();
@@ -47,25 +48,24 @@ class Allfavourits extends React.Component {
       .catch(err => console.log('could not find data', err))
   }
 
-  //delete item
+  //delete one item
   deleteItem = (name) => {
-    let value = this.state.list.find(item => name == item.name)
+    let value = this.state.staticLoc.find(item => name.toLowerCase()===item.name.toLowerCase())
     let id = value.id
     axios.delete(`http://localhost:8080/location/${id}`)
+      .then(response => {   
+      axios.get('http://localhost:8080/location')
       .then(response => {
-        if (this.state.selected == "select category") {
+        if (this.state.selected === "select category") {
           this.setState({ list: response.data })
-        } else {
+        } else{
           let newList = response.data.filter(item => item.category.toLowerCase() === this.state.selected.toLowerCase())
-          this.setState({ list: newList })
-        }
-      })
-  }
-
-
-
+          this.setState({ list: newList }).catch(err => console.log(err))}
+      }).catch(err => console.log(err))
+  })
+}
   //for reminder popup
-  item=""
+  item = ""
   handleCloseModalTwo = (event) => {
     event.preventDefault()
     this.setState({ showModalTwo: false })
@@ -86,7 +86,6 @@ class Allfavourits extends React.Component {
     this.setState({ showModal: true })
   }
   //create reminder object
-
   obj = { name: "", reminder: "", event: "" }
   getName = (name) => {
     this.obj.name = name
@@ -96,7 +95,7 @@ class Allfavourits extends React.Component {
   }
   setEvent = (event) => {
     this.obj.event = event.target.value
-    this.setState({eventValue:event.target.value })
+    this.setState({ eventValue: event.target.value })
   }
 
   //post reminder and refresh 
@@ -105,86 +104,68 @@ class Allfavourits extends React.Component {
       .then(response => {
         axios.get('http://localhost:8080/location')
           .then(response => {
-            if (this.state.selected == "select category") {
+            if (this.state.selected === "select category") {
               this.setState({ list: response.data, eventValue: "" })
-            }else{
-            let reminderItems = response.data.filter(item => item.category.toLowerCase() === this.state.selected.toLowerCase())
-            this.setState({ list: reminderItems, eventValue: "" })
-          }
+            } else {
+              let reminderItems = response.data.filter(item => item.category.toLowerCase() === this.state.selected.toLowerCase())
+              this.setState({ list: reminderItems, eventValue: "" })
+            }
           }).catch(err => console.log(err))
       }).catch(err => console.log(err))
   }
+
   //remove reminder
-
-
-  removeReminder=(name)=>{
-    let value = this.state.list.find(item => name == item.name)
+  removeReminder = (name) => {
+    let value = this.state.list.find(item => name.toLowerCase() === item.name.toLowerCase())
     let id = value.id
     axios.delete(`http://localhost:8080/reminder/${id}`)
       .then(response => {
         axios.get('http://localhost:8080/location')
-        .then(response => {
-          if (this.state.selected == "select category") {
-            this.setState({ list: response.data, eventValue: "" })
-          }else{
-          let reminderItems = response.data.filter(item => item.category.toLowerCase() === this.state.selected.toLowerCase())
-          this.setState({ list: reminderItems, eventValue: "" })
-        }
-        }).catch(err => console.log(err))
-      })
-
+          .then(response => {
+            if (this.state.selected === "select category") {
+              this.setState({ list: response.data, eventValue: "" })
+            } else {
+              let reminderItems = response.data.filter(item => item.category.toLowerCase() === this.state.selected.toLowerCase())
+              this.setState({ list: reminderItems, eventValue: "" })
+            }
+          }).catch(err => console.log(err))
+      }).catch(err => console.log(err))
   }
   //settimeout to check for reminder
- componentDidUpdate(){
-
-  this.timeout = setTimeout(() => {
-    this.state.list.map(item => {
-      if (item.reminder) {
-        axios.post(`http://localhost:8080/location/${this.props.match.params.category}`, item)
-          .then(response => {
-           console.log(response.data)
-            if (response.data ) {
-              this.item = item
-              this.setState({ showModalTwo: true})
-            }
-          })
-          .catch(err => console.log(err))
-      }
-    })
-  }, 10000);
-}
-
-  // renderFucn=(data)=>{
-  //   if (this.state.selected == "select category") {
-  //       data.map(tem => {return <Locationitem handleOpenModal={this.handleOpenModal} deleteItem={this.deleteItem} getName={this.getName} key={item.id} data={item}></Locationitem>})
-  //   }else{
-  //      data.filter(item =>item.category.toLowerCase() == this.state.selected.toLowerCase())
-  //        .map(tem => {return <Locationitem handleOpenModal={this.handleOpenModal} deleteItem={this.deleteItem} getName={this.getName} key={item.id} data={item}></Locationitem>})
-  //   }
-  // }
-
-///////delete here if needed
-
+  componentDidUpdate() {
+    this.timeout = setTimeout(() => {
+      this.state.list.filter(item => {
+        if (item.reminder) {
+          axios.post(`http://localhost:8080/location/${this.props.match.params.category}`, item)
+            .then(response => {
+              if (response.data) {
+                this.item = item
+                this.setState({ showModalTwo: true })
+              }
+            })
+            .catch(err => console.log(err))
+        }
+      })
+    }, 10000);
+  }
   render() {
     return (
       <>
         <Header></Header>
         <div className="favourits">
-          <label className="favourits__label">Search here</label>
           <select className="favourits__dropdown" value={this.state.selected} onChange={this.changeHandler}>
-            <option value="select category">Select your category</option>
-            <option value="Resturants">Resturants</option>
+            <option className="favourits__label" value="select category">Select your category</option>
+            <option value="Restaurants">Restaurants</option>
             <option value="Services">Services</option>
             <option value="Kids">Kids</option>
             <option value="Groceries">Groceries</option>
           </select>
           <button className="favourits__refresh" onClick={this.refreshList}>REFRESH</button>
         </div>
-
         <section className="section-right">
           {this.state.list.length >= 1 ? this.state.list.map(item => { return <Locationitem handleOpenModal={this.handleOpenModal} deleteItem={this.deleteItem} removeReminder={this.removeReminder} getName={this.getName} key={item.id} data={item}></Locationitem> }) : <h2 className="placeholder-text">No location saved</h2>}
         </section>
-    {/* modla to enter the date and event */}
+        {/* modal to enter the date and event */}
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"

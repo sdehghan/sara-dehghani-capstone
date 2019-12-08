@@ -1,21 +1,31 @@
+@import '.././styles/Base/Base.scss';
+
+
 .item{
-    width: 300px;
+    width: 200px;
     height: 500px;
     font-size:12px;
     display: flex;
     flex-direction: column;
+    border:none;
+    // box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.5);
+  
     &__img{
-        width: 180px;
+        width: 200px;
         height: 150px;
         padding-bottom:20px; 
+        
     }
     &__box-two{
         width:150px;
         margin-top:10px;
-        margin-left:5px;
+        margin-left:8px;
         padding:10px;
         margin-bottom:15px;
-        border:1px solid rgb(228, 216, 216);;
+        border:1px solid rgb(241, 236, 236);;
+        box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.5);
+        border-radius:10px;;
+        
     }
     &__photo{
         width: 100%;
@@ -23,6 +33,7 @@
         object-fit: fill;
         background-size:contain;
         border-radius:20px;
+        box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.5);
     }
     &__box{
         display: flex;
@@ -30,8 +41,11 @@
         justify-content: space-between;
         text-align: left;
         padding-left:10px;
-        width: 200px;
+        margin-bottom:15px;
+        width: 150px;
         height:150px;
+        border-radius:10px;
+       
     }
 
     &__title{
@@ -55,16 +69,35 @@
        color:rgb(94, 91, 91);
        outline: none;
        box-shadow: 0 5px #999;
-       padding: 5px 15px;
        margin-right:5px;
-       padding-right:10px;
        text-align: center;
        font-weight: bold ;
        box-shadow: #8a8181;
-       width:65px;
+       width:70px;
        height:20px;
     }
-   &__button-position{
-       margin-left:50px;
+   &__button-delete{
+       background-color:rgb(245, 240, 240);
+       border-radius:20px;
+       border:none;
+       color:rgb(94, 91, 91);
+       outline: none;
+       box-shadow: 0 5px #999;
+       padding: 5px 15px;
+       margin-left:8px;
+       text-align: center;
+       font-weight: bold ;
+       box-shadow: #8a8181;
+       width:70px;
+       height:25px;
+       box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.5);
    }
+   &__button-delete:hover{
+      background-color: rgb(94, 91, 91);
+   }
+   &__button-delete:active {
+    background-color:#f0c4a3;
+    box-shadow: 0 5px rgb(94, 91, 91);
+    transform: translateY(4px);
+  }
 }

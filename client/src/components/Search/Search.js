@@ -12,7 +12,7 @@ class Search extends React.Component {
     showModal: false,
     modalData: null,
     staticLoc: [],
-    selected:''
+    selected: ''
   }
 
   componentDidMount() {
@@ -30,16 +30,16 @@ class Search extends React.Component {
       .then(response => {
         this.setState({ showModal: !this.state.showModal, modalData: "Your location is saved" })
       }
-    )
+      )
       .catch(err => {
         this.setState({ showModal: !this.state.showModal, modalData: "You already saved this location" })
       })
   }
- //search by name
+  //search by name
   submitHandler = (event) => {
     event.preventDefault();
     const name = event.target.name.value
-    let newLoc = this.state.loc.filter(loc => loc.name.toLowerCase()=== name.toLowerCase())
+    let newLoc = this.state.loc.filter(loc => loc.name.toLowerCase().includes(name.toLowerCase()))
     this.setState({ loc: newLoc })
 
   }
@@ -47,48 +47,48 @@ class Search extends React.Component {
     event.preventDefault();
     this.setState({ loc: this.state.staticLoc, showModal: !this.state.showModal })
   }
-  refreshList=(e)=>{
+  refreshList = (e) => {
     e.preventDefault();
     axios.get(`http://localhost:8080/`)
       .then(response => {
-        this.setState({ loc: response.data, staticLoc: response.data ,selected:""})
+        this.setState({ loc: response.data, staticLoc: response.data, selected: "" })
       })
       .catch(err => console.log('could not find data', err))
   }
 
-  changeHandler =(e)=>{
-    let data=this.state.loc.filter(item=>item.category.toLowerCase() === e.target.value.toLowerCase())
-    if (e.target.value !== ""){
-    this.setState({selected:e.target.value ,loc:data});
-    }else if (e.target.value === ""){
+  changeHandler = (e) => {
+    let data = this.state.staticLoc.filter(item => item.category.toLowerCase() === e.target.value.toLowerCase())
+    if (e.target.value !== "") {
+      this.setState({ selected: e.target.value, loc: data });
+    } else if (e.target.value === "") {
       axios.get('http://localhost:8080/')
-      .then(response => {
-        this.setState({ loc: response.data ,selected:""})        
+        .then(response => {
+          this.setState({ loc: response.data, selected: "" })
         });
     }
   }
-  
+
   render() {
     return (
       <>
         <Header></Header>
         <div className="search-box">
-        <select className ="favourits-search"  value={this.state.selected} onChange={this.changeHandler}>
-          <option value="">Select your category</option>
-          <option value="Resturants">Resturants</option>
-          <option value="Services">Services</option>
-          <option value="Kids">Kids</option>
-          <option value="Groceries">Groceries</option>
-        </select>
+          <select className="favourits-search" value={this.state.selected} onChange={this.changeHandler}>
+            <option value="">Select your category</option>
+            <option value="Restaurants">Restaurants</option>
+            <option value="Services">Services</option>
+            <option value="Kids">Kids</option>
+            <option value="Groceries">Groceries</option>
+          </select>
 
-        <form className="search" onSubmit={this.submitHandler}>
-          <input name="name" className="search__input" placeholder="Input your location name"></input>
-          <button className="search__submit" type="submit">SEARCH</button>
-          <button className="search__submit" onClick={this.refreshList}>REFRESH</button>
-        </form>
+          <form className="search" onSubmit={this.submitHandler}>
+            <input name="name" className="search__input" placeholder="Input your location name"></input>
+            <button className="search__submit" type="submit">SEARCH</button>
+            <button className="search__submit" onClick={this.refreshList}>REFRESH</button>
+          </form>
         </div>
         <section className="section-right">
-          {this.state.loc ? this.state.loc.map(item => { return <Locationsearch key={item.id} saveLocation={this.saveLocation} data={item}></Locationsearch> }) : null}
+          {this.state.loc ? this.state.loc.map(item => {return <Locationsearch key={item.id} saveLocation={this.saveLocation} data={item}></Locationsearch> }) : null}
         </section>
         <ReactModal
           isOpen={this.state.showModal}

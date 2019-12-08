@@ -1,3 +1,6 @@
+@import '.././styles/Base/Base.scss';
+
+
 .favourits{
     display: flex;
     justify-content: center;
@@ -9,12 +12,10 @@
     font-size:18px;
   }
  &__dropdown{
-   margin-left:15px;
+   margin-left:20px;
    width:400px;
    height:40px;
-   border:2px solid rgb(228, 220, 220);
-   box-shadow: #8a8181;
-
+   border:1px solid rgb(228, 220, 220);
  }
  &__dropdown:focus{
      outline: none;
@@ -40,8 +41,8 @@
 
 .placeholder-text{
     text-align: center;
-    padding-top:300px;
-    font-size:30px;
+    padding-top:250px;
+    font-size:35px;
     color:#a8a0a0;
 }
 

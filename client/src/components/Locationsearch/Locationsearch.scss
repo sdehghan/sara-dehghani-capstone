@@ -1,13 +1,18 @@
+@import '.././styles/Base/Base.scss';
+
+
 .item{
-    width: 260px;
+    width: 250px;
     height: 500px;
     font-size:12px;
     margin-top:20px;
     &__img{
-        width: 180px;
+        width: 200px;
         height: 150px;
         padding-bottom:30px;
-       
+    }
+    &__img:hover{
+        transform: scale(1.2);
     }
     &__photo{
         width: 100%;
@@ -38,19 +43,19 @@
     }
    &__button{
        background-color:#f0c4a3;
-       border-radius:30px;
+       border-radius:20px;
        border:none;
        color:rgb(94, 91, 91);
        outline: none;
        box-shadow: 0 5px #999;
        padding: 5px 15px;
-       margin-right:5px;
-       padding-right:10px;
+       margin-left:8px;
        text-align: center;
        font-weight: bold ;
        box-shadow: #8a8181;
-       width:80px;
-       height:30px;
+       width:70px;
+       height:25px;
+       box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.5);
    }
    &__button:hover{
     background-color: rgb(94, 91, 91);

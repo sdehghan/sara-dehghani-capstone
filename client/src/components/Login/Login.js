@@ -6,15 +6,16 @@ import axios from 'axios';
 
 
 class Login extends React.Component {
+
     submitHandler = (event) => {
         event.preventDefault();
-
+        if ( event.target.password.value.length < 6){
+            alert("Your password should be at 6 characters")
+        }else{
         let user = { username: event.target.username.value, password: event.target.password.value }
-        console.log(user)
         axios.post('http://localhost:8080/login', user)
             .then(response => {
-             
-                    if (response.data) {
+                if (response.data) {
                     return this.props.history.push('/search')
                 }
                 else {
@@ -22,7 +23,7 @@ class Login extends React.Component {
                         this.props.history.push('/')
                     )
                 }
-            }).catch(err => console.log(err))
+            }).catch(err => console.log(err))}
     }
 
     render() {
