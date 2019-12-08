@@ -18,24 +18,22 @@ router.post('/', (req, res) => {
     let reminderTime = format(parseISO(req.body.reminder), 'MM/dd/yyyy')
     reminderItem.reminder = reminderTime;
    //
+   //check if item already has reminder
     let repeatItem=reminderList.find(item=>req.body.name.toLowerCase() === item.name.toLowerCase())
     if (repeatItem){
       reminderItem.displayed=0;
       repeatItem=reminderItem
-      // console.log('this item already exist',repeatItem)
       res.send(repeatItem)
     }else{
       reminderList.push(reminderItem)
-      // console.log('this is new',reminderItem)
       res.send(reminderItem)
     }
   }
   else res.status(400).json({ error: "error" })
 })
 
-
+//delete reminder
 router.delete('/:id', (req, res) => {
-  console.log(reminderList)
   reminderList.map(item => {
      if (req.params.id === item.id){
        item.event=""

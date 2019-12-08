@@ -1,0 +1,24 @@
+
+@import 'Mixin.scss';
+
+@font-face {
+  font-family: "Avenir";
+  src: url("../../.././assets/Font/AvenirNextProLT/Linotype - AvenirNextLTPro-Regular.otf") format('truetype');
+}
+  html {
+    font-family:"Avenir";
+    box-sizing: border-box;
+    color:black;
+    padding: 0; 
+    margin: 0;
+    height:100%;
+  }
+  *,*::before ,*::after{
+    box-sizing:inherit;
+    padding: 0; 
+    margin: 0;
+  }
+
+
+ 
+

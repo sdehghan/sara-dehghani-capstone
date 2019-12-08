@@ -2,6 +2,7 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
+import "./Datepicker.scss"
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
@@ -21,12 +22,14 @@ class Datepicker extends React.Component {
 
   render() {
     return (
+
       <DatePicker
         selected={this.state.startDate}
         onSelect={this.handleSelect}
         onChange={this.handleChange}
         placeholderText="Please enter a date"
       />
+    
     );
   }
 }

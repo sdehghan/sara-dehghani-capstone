@@ -1,0 +1,54 @@
+// fonts mixin
+
+@mixin font-hero-header() {
+    font-size:60px;
+    line-height:68px;
+  }
+  @mixin font-h1-header(){
+    font-size: 36px;
+    line-height: 44px;
+  }
+  
+  @mixin font-h1-h2-header(){
+    font-size: 24px;
+    line-height:32px;
+  }
+  @mixin font-h3-subheader(){
+    font-size:16px;
+    line-height: 24px;
+  }
+  
+  @mixin font-subheader-paragraph-comment() {
+    font-size:14px;
+    line-height: 22px;
+  }
+  
+  @mixin font-h4-list-contact(){
+    font-size:14px;
+    line-height:20px;
+  }
+  
+  @mixin font-paragraph-list-conatct(){
+    font-size:13px;
+    line-height: 18px;
+  }
+  @mixin font-labels(){
+    font-size:12px;
+    line-height:20px;
+  }
+   
+  @mixin mobile{
+    @media (min-width:200px) and (max-width:767px){
+      @content;
+    }
+  }
+  @mixin tablet{
+    @media (min-width:768px){
+      @content;
+    }
+    }
+  @mixin desktop{
+    @media (min-width:1440px){
+      @content;
+    }
+  }

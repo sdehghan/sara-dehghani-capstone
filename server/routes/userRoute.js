@@ -8,9 +8,10 @@ router.use(express.json());
   router.post('/',(req,res)=>{
      
     users.forEach(item=>{
-     if(item.username == req.body.username && item.password == req.body.password){
-      // res.send({item:item ,result:true})
+     if(item.username === req.body.username && item.password === req.body.password){
       res.send(true)
+      }else{
+        res.send(false)
       }
       })
     })

@@ -4,7 +4,6 @@ import './Locationpage.scss'
 import axios from 'axios'
 import Header from '../Header/Header';
 import ReactModal from 'react-modal';
-import cron from "node-cron";
 import Date from '../Datepicker/Datepicker'
 
 
@@ -15,32 +14,31 @@ class Locationpage extends React.Component {
     url: "/",
     showModal: false,
     showModalTwo: false,
-    displayed: false,
   }
   componentDidMount() {
     axios.get('http://localhost:8080/location')
       .then(response => {
         let list = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())
         this.setState({ list: list, url: this.props.match.url })
-    })
+    }).catch(err => console.log(err))
   }
   item = ""
 
   componentDidUpdate() {
 
-    if (this.state.url != this.props.match.url) {
+    if (this.state.url !== this.props.match.url) {
       axios.get('http://localhost:8080/location')
         .then(response => {
+          this.setState({ list: response.data, url: this.props.match.url })
           let list = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())
           this.setState({ list: list, url: this.props.match.url })
-        })
+        }).catch(err => console.log(err))
     }
-         this.timeout = setTimeout(() => {
-        this.state.list.map(item => {
-          if (item.reminder && !this.state.displayed) {
+      this.timeout = setTimeout(() => {
+        this.state.list.filter(item => {
+          if (item.reminder) {
             axios.post(`http://localhost:8080/location/${this.props.match.params.category}`, item)
               .then(response => {
-               console.log(response.data)
                 if (response.data ) {
                   this.item = item
                   this.setState({ showModalTwo: true})
@@ -92,35 +90,40 @@ class Locationpage extends React.Component {
       .then(response => {
         axios.get('http://localhost:8080/location')
           .then(response => {
+            this.setState({ list: response.data, url: this.props.match.url })
             let reminderItems = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())
             this.setState({ list: reminderItems, url: this.props.match.url })
           }).catch(err => console.log(err))
       }).catch(err => console.log(err))
   }
 
-  //delete item
+  //delete saved item
   deleteItem = (name) => {
-    let value = this.state.list.find(item => name == item.name)
+    let value = this.state.list.find(item => name.toLowerCase() === item.name.toLowerCase())
     let id = value.id
     axios.delete(`http://localhost:8080/location/${id}`)
       .then(response => {
+        this.setState({ list: response.data, url: this.props.match.url })
         let newList = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())
         this.setState({ list: newList, url: this.props.match.url })
       })
   }
 
+//removereminder
   removeReminder=(name)=>{
-    let value = this.state.list.find(item => name == item.name)
+    let value = this.state.list.find(item => name.toLowerCase() ===item.name.toLowerCase() )
     let id = value.id
     axios.delete(`http://localhost:8080/reminder/${id}`)
       .then(response => {
         axios.get('http://localhost:8080/location')
         .then(response => {
+          this.setState({ list: response.data, url: this.props.match.url })
           let reminderItems = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())
           this.setState({ list: reminderItems, url: this.props.match.url })
         }).catch(err => console.log(err))
       })
   }
+
   render() {
     return (
       <>
@@ -129,7 +132,6 @@ class Locationpage extends React.Component {
           {this.state.list.length >= 1 ? this.state.list.map(item => 
           { return <Locationitem handleOpenModal={this.handleOpenModal} removeReminder={this.removeReminder}  deleteItem={this.deleteItem} getName={this.getName} key={item.id} data={item}></Locationitem> }) : <h2 className="placeholder-text">No location saved</h2>}
         </section>
-
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"
@@ -156,12 +158,10 @@ class Locationpage extends React.Component {
           contentLabel="Minimal Modal Example"
           className="modal"
           overlayClassName="overlay"
-          ariaHideApp={false}
-        >
+          ariaHideApp={false}>
           <p className="modal-text">You have a reminder for {this.item.name} and {this.item.event} event</p>
-          <button className="modal-button" onClick={this.handleCloseModalTwo}>Ok</button>
+          <button className="modal-button" onClick={this.handleCloseModalTwo}>OK</button>
         </ReactModal>
-
       </>
     )
   }

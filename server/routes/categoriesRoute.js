@@ -2,9 +2,7 @@ const nanoid = require('nanoid')
 const express = require("express");
 const router = express.Router();
 let locations = require('../data/location.json');
-const format = require('date-fns/format')
 let func = require('../function/function')
-var parseISO = require('date-fns/parseISO')
 router.use(express.json());
 
 
@@ -29,12 +27,12 @@ let savedLocations=[]
   //delete  a saved location
   router.delete('/:id',(req,res)=>{
     if(req.params.id){
-      let newLocations =savedLocations.filter(item =>req.params.id!==item.id)
-       savedLocations=newLocations
-      res.send(savedLocations)
+      let newItem =savedLocations.findIndex(item =>req.params.id==item.id)
+       savedLocations.splice(newItem,1)
+       res.send(savedLocations)
     }
   })
- //reminder check
+ //reminder check for each saved item
   router.post('/:category',(req,res)=>{
     let value =func.dateCalc(req.body.reminder)
     let test=savedLocations.find(item=>item.id === req.body.id)

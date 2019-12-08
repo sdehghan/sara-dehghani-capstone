@@ -1,3 +1,4 @@
+@import '.././styles/Base/Base.scss';
 
 .header{
     width: 100%;
@@ -15,37 +16,46 @@
     }
     &__button-user{
         width: 50px;
-        height: 50px;
+        height: 40px;
         border-radius: 100px;
         background-color:#f0c4a3;
         position: absolute;
         right: 30px;
-        top:10px;
+        top:20px;
         border:none;
         color: rgb(94, 91, 91);
+        font-weight: bold;
+        box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.5);
     }
     &__button-logout{
         width: 60px;
-        height: 50px;
+        height: 40px;
         border-radius: 100px;
         background-color:#f0c4a3;
         position: absolute;
         right: 100px;
-        top:10px;
+        top:20px;
         border:none;
         color: rgb(94, 91, 91);
+        font-weight: bold;
+        box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.5);
+    }
+    &__button-logout:focus{
+        outline: none;
     }
     &__linkbox{
         display: flex;
         justify-content:flex-end;
         align-items: center;
         height: 100%;
-        width:90%;
+        top:20px;
+        width:85%;
     }
    &__link{
        text-decoration: none;
        color:rgb(94, 91, 91);
-       margin-right:40px;
+     
+     
     }
     &__button-link{
         text-decoration: none;

@@ -5,11 +5,17 @@ import Login from './components/Login/Login'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import Allfavourits from './components/Allfavourits/Allfavourits';
-
+import { Helmet } from 'react-helmet'
+const Title="Location Save"
 class App extends React.Component {
   render() {
     return (
-      <BrowserRouter>
+      <>
+     
+        <Helmet>
+          <title>{ Title}</title>
+        </Helmet>
+        <BrowserRouter>
         <Switch >
           <Route path="/" exact component={Login}></Route>
           <Route path="/search" exact component={Search}></Route>
@@ -17,7 +23,7 @@ class App extends React.Component {
           <Route exact path="/location/:category" component={Locationpage} />
         </Switch>
       </BrowserRouter>
-
+    </>
     );
   }
 }

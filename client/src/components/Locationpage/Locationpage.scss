@@ -1,3 +1,6 @@
+@import '.././styles/Base/Base.scss';
+
+
 .section-right{
     display: flex;
     justify-content:center;
@@ -20,14 +23,15 @@
     bottom: 0px;
     left: 50%;
     right: 0px;
-    width: 350px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     transform: translate(-50%, -50%);
     outline: none;
     border-radius:20px;
     display: flex;
     flex-direction: column;
     justify-content:center;
+    box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.5);
 }
 .reminder-overlay {
     position: fixed;
@@ -50,7 +54,6 @@
     background-color:#f0c4a3;
     color: rgb(94, 91, 91);
     margin-right: 20px;
-    padding-right:10px;
     text-align: center;
     font-weight: bold ;
     
@@ -75,13 +78,14 @@
 }
 .modal{
     position: absolute;
+    
     background-color: white;
     padding: 10px 30px;
     top: 50%;
     bottom: 0px;
     left: 50%;
     right: 0px;
-    width: 250px;
+    width: 280px;
     height: 100px;
     transform: translate(-50%, -50%);
     outline: none;
@@ -89,6 +93,7 @@
     display: flex;
     flex-direction: column;
     justify-content:center;
+    box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.5);
 }
 .overlay {
     position: fixed;
@@ -110,5 +115,6 @@
 .modal-text{
     align-self: center;
     font-size:15px;
+    margin-bottom:10px;
     color:rgb(94, 91, 91);
 }
