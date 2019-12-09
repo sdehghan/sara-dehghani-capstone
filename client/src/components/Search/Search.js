@@ -83,8 +83,10 @@ class Search extends React.Component {
 
           <form className="search" onSubmit={this.submitHandler}>
             <input name="name" className="search__input" placeholder="Input your location name"></input>
+            <div className="search__mobile">
             <button className="search__submit" type="submit">SEARCH</button>
             <button className="search__submit" onClick={this.refreshList}>REFRESH</button>
+            </div>
           </form>
         </div>
         <section className="section-right">

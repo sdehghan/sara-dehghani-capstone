@@ -13,6 +13,12 @@
         position: absolute;
         top:5px;
         left:150px;
+        @include mobile(){
+            left:80px;
+            width:60px;
+            height:70%;
+            top:10px;
+        }
     }
     &__button-user{
         width: 50px;
@@ -26,6 +32,9 @@
         color: rgb(94, 91, 91);
         font-weight: bold;
         box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.5);
+        @include mobile(){
+            right: 5px;
+        }
     }
     &__button-logout{
         width: 60px;
@@ -39,6 +48,10 @@
         color: rgb(94, 91, 91);
         font-weight: bold;
         box-shadow: 10px 10px 10px rgba(56, 55, 55, 0.5);
+        @include mobile(){
+            right: 65px;
+
+        }
     }
     &__button-logout:focus{
         outline: none;
@@ -49,13 +62,21 @@
         align-items: center;
         height: 100%;
         top:20px;
-        width:85%;
+        
+        @include mobile(){
+            width: 65%;
+        }
+        @include tablet(){
+            width:75%;
+        }
+        @include desktop(){
+            width: 85%;
+        }
     }
+
    &__link{
        text-decoration: none;
        color:rgb(94, 91, 91);
-     
-     
     }
     &__button-link{
         text-decoration: none;

@@ -7,12 +7,6 @@ import { NavLink,Link } from 'react-router-dom'
 
 class Header extends React.Component {
 
-    // submitHandler = (event) => {
-    //     event.preventDefault();
-    //     let name = event.target.name.value;
-    //     this.props.addLocation(name)
-    // }
-   
     render() {
     
         return (
