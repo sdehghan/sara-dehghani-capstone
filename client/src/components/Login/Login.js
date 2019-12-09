@@ -1,6 +1,7 @@
 import React from 'react'
 import './Login.scss'
 import axios from 'axios';
+import { SERVER_ADDRESS } from '../../config';
 
 
 class Login extends React.Component {
@@ -11,7 +12,7 @@ class Login extends React.Component {
             alert("Your password should be at 6 characters")
         } else {
             let user = { username: event.target.username.value, password: event.target.password.value }
-            axios.post('http://localhost:8080/login', user)
+            axios.post(`${SERVER_ADDRESS}/login`, user)
                 .then(response => {
                     if (response.data) {
                         return this.props.history.push('/search')

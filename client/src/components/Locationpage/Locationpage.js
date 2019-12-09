@@ -6,6 +6,7 @@ import save from '../../assets/Icon-save.png'
 import Header from '../Header/Header';
 import ReactModal from 'react-modal';
 import Date from '../Datepicker/Datepicker'
+import { SERVER_ADDRESS } from '../../config';
 
 
 class Locationpage extends React.Component {
@@ -17,7 +18,7 @@ class Locationpage extends React.Component {
     showModalTwo: false,
   }
   componentDidMount() {
-    axios.get('http://localhost:8080/location')
+    axios.get(`${SERVER_ADDRESS}/location`)
       .then(response => {
         let list = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())
         this.setState({ list: list, url: this.props.match.url })
@@ -28,7 +29,7 @@ class Locationpage extends React.Component {
   componentDidUpdate() {
 
     if (this.state.url !== this.props.match.url) {
-      axios.get('http://localhost:8080/location')
+      axios.get(`${SERVER_ADDRESS}/location`)
         .then(response => {
           this.setState({ list: response.data, url: this.props.match.url })
           let list = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())
@@ -38,7 +39,7 @@ class Locationpage extends React.Component {
     this.timeout = setTimeout(() => {
       this.state.list.forEach(item => {
         if (item.reminder) {
-          axios.post(`http://localhost:8080/location/${this.props.match.params.category}`, item)
+          axios.post(`${SERVER_ADDRESS}/location/${this.props.match.params.category}`, item)
             .then(response => {
               if (response.data) {
                 this.item = item
@@ -87,9 +88,9 @@ class Locationpage extends React.Component {
 
   //post reminder and refresh 
   reminder = () => {
-    axios.post('http://localhost:8080/reminder', this.obj)
+    axios.post(`${SERVER_ADDRESS}/reminder`, this.obj)
       .then(response => {
-        axios.get('http://localhost:8080/location')
+        axios.get(`${SERVER_ADDRESS}/location`)
           .then(response => {
             this.setState({ list: response.data, url: this.props.match.url })
             let reminderItems = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())
@@ -102,7 +103,7 @@ class Locationpage extends React.Component {
   deleteItem = (name) => {
     let value = this.state.list.find(item => name.toLowerCase() === item.name.toLowerCase())
     let id = value.id
-    axios.delete(`http://localhost:8080/location/${id}`)
+    axios.delete(`${SERVER_ADDRESS}/location/${id}`)
       .then(response => {
         this.setState({ list: response.data, url: this.props.match.url })
         let newList = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())
@@ -114,9 +115,9 @@ class Locationpage extends React.Component {
   removeReminder = (name) => {
     let value = this.state.list.find(item => name.toLowerCase() === item.name.toLowerCase())
     let id = value.id
-    axios.delete(`http://localhost:8080/reminder/${id}`)
+    axios.delete(`${SERVER_ADDRESS}/reminder/${id}`)
       .then(response => {
-        axios.get('http://localhost:8080/location')
+        axios.get(`${SERVER_ADDRESS}/location`)
           .then(response => {
             this.setState({ list: response.data, url: this.props.match.url })
             let reminderItems = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())

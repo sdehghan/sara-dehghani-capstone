@@ -6,6 +6,7 @@ import axios from 'axios'
 import Header from '../Header/Header';
 import ReactModal from 'react-modal';
 import Date from '../Datepicker/Datepicker'
+import { SERVER_ADDRESS } from '../../config';
 
 
 class Allfavourits extends React.Component {
@@ -20,7 +21,7 @@ class Allfavourits extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8080/location')
+    axios.get(`${SERVER_ADDRESS}/location`)
       .then(response => {
         this.setState({ list: response.data, staticLoc: response.data })
       }).catch(err => console.log(err))
@@ -29,7 +30,7 @@ class Allfavourits extends React.Component {
   changeHandler = (e) => {
     let value=e.target.value;
     this.setState({ selected: e.target.value });
-    axios.get('http://localhost:8080/location')
+    axios.get(`${SERVER_ADDRESS}/location`)
     .then(response=>{
     if (value !== "select category") {
       let data = response.data.filter(item => item.category.toLowerCase() === value.toLowerCase())
@@ -42,7 +43,7 @@ class Allfavourits extends React.Component {
   //refresh button
   refreshList = (e) => {
     e.preventDefault();
-    axios.get(`http://localhost:8080/location`)
+    axios.get(`${SERVER_ADDRESS}/location`)
       .then(response => {
         this.setState({ list: response.data, selected: "select category" })
       })
@@ -53,9 +54,9 @@ class Allfavourits extends React.Component {
   deleteItem = (name) => {
     let value = this.state.staticLoc.find(item => name.toLowerCase()===item.name.toLowerCase())
     let id = value.id
-    axios.delete(`http://localhost:8080/location/${id}`)
+    axios.delete(`${SERVER_ADDRESS}/location/${id}`)
       .then(response => {   
-      axios.get('http://localhost:8080/location')
+      axios.get(`${SERVER_ADDRESS}/location`)
       .then(response => {
         if (this.state.selected === "select category") {
           this.setState({ list: response.data })
@@ -101,9 +102,9 @@ class Allfavourits extends React.Component {
 
   //post reminder and refresh 
   reminder = () => {
-    axios.post('http://localhost:8080/reminder', this.obj)
+    axios.post(`${SERVER_ADDRESS}/reminder`, this.obj)
       .then(response => {
-        axios.get('http://localhost:8080/location')
+        axios.get(`${SERVER_ADDRESS}/location`)
           .then(response => {
             if (this.state.selected === "select category") {
               this.setState({ list: response.data, eventValue: "" })
@@ -119,9 +120,9 @@ class Allfavourits extends React.Component {
   removeReminder = (name) => {
     let value = this.state.list.find(item => name.toLowerCase() === item.name.toLowerCase())
     let id = value.id
-    axios.delete(`http://localhost:8080/reminder/${id}`)
+    axios.delete(`${SERVER_ADDRESS}/reminder/${id}`)
       .then(response => {
-        axios.get('http://localhost:8080/location')
+        axios.get(`${SERVER_ADDRESS}/location`)
           .then(response => {
             if (this.state.selected === "select category") {
               this.setState({ list: response.data, eventValue: "" })
@@ -137,7 +138,7 @@ class Allfavourits extends React.Component {
     this.timeout = setTimeout(() => {
       this.state.list.forEach(item => {
         if (item.reminder) {
-          axios.post(`http://localhost:8080/location/${this.props.match.params.category}`, item)
+          axios.post(`${SERVER_ADDRESS}/location/${this.props.match.params.category}`, item)
             .then(response => {
               if (response.data) {
                 this.item = item

@@ -5,6 +5,7 @@ import axios from 'axios'
 import search from '../../assets/Icon-search.svg'
 import ReactModal from 'react-modal';
 import Header from '../Header/Header';
+import { SERVER_ADDRESS } from '../../config';
 
 class Search extends React.Component {
 
@@ -18,7 +19,7 @@ class Search extends React.Component {
 
   componentDidMount() {
     ReactModal.setAppElement('body');
-    axios.get(`http://localhost:8080/`)
+    axios.get(`${SERVER_ADDRESS}/`)
       .then(response => {
         this.setState({ loc: response.data, staticLoc: response.data })
       })
@@ -27,7 +28,7 @@ class Search extends React.Component {
 
   saveLocation = (name) => {
     let obj = { name: name }
-    axios.post('http://localhost:8080/location', obj)
+    axios.post(`${SERVER_ADDRESS}/location`, obj)
       .then(response => {
         this.setState({ showModal: !this.state.showModal, modalData: "Your location is saved" })
       }
@@ -50,7 +51,7 @@ class Search extends React.Component {
   }
   refreshList = (e) => {
     e.preventDefault();
-    axios.get(`http://localhost:8080/`)
+    axios.get(`${SERVER_ADDRESS}/`)
       .then(response => {
         this.setState({ loc: response.data, staticLoc: response.data, selected: "" })
       })
@@ -62,7 +63,7 @@ class Search extends React.Component {
     if (e.target.value !== "") {
       this.setState({ selected: e.target.value, loc: data });
     } else if (e.target.value === "") {
-      axios.get('http://localhost:8080/')
+      axios.get(`${SERVER_ADDRESS}/`)
         .then(response => {
           this.setState({ loc: response.data, selected: "" })
         });
