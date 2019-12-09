@@ -39,14 +39,22 @@
      outline:none;
  }
 }
-
-.placeholder-text{
+.placeholder{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+&__img{
+  padding-top:200px;
+  width:50px;
+  margin-bottom: 50px;;
+}
+&__text{
     text-align: center;
-    padding-top:250px;
     font-size:35px;
     color:#a8a0a0;
 }
-
+}
 .item-change{
   display: none;
 }
