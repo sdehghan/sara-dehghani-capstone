@@ -82,7 +82,7 @@ class Search extends React.Component {
             <option value="Groceries">Groceries</option>
           </select>
 
-          <form className="search" onSubmit={this.submitHandler}>
+          <form className="search" autoComplete="off" onSubmit={this.submitHandler}>
             <div className="search__img-box">
               <img className="search__icon" src={search} alt="search" /><input name="name" className="search__input" placeholder="Input your location name"></input>
             </div>

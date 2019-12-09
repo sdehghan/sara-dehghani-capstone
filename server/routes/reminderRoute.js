@@ -17,14 +17,14 @@ router.post('/', (req, res) => {
     reminderItem.event = req.body.event
     let reminderTime = format(parseISO(req.body.reminder), 'MM/dd/yyyy')
     reminderItem.reminder = reminderTime;
-   //
-   //check if item already has reminder
-    let repeatItem=reminderList.find(item=>req.body.name.toLowerCase() === item.name.toLowerCase())
-    if (repeatItem){
-      reminderItem.displayed=0;
-      repeatItem=reminderItem
+    //
+    //check if item already has reminder
+    let repeatItem = reminderList.find(item => req.body.name.toLowerCase() === item.name.toLowerCase())
+    if (repeatItem) {
+      reminderItem.displayed = 0;
+      repeatItem = reminderItem
       res.send(repeatItem)
-    }else{
+    } else {
       reminderList.push(reminderItem)
       res.send(reminderItem)
     }
@@ -35,13 +35,13 @@ router.post('/', (req, res) => {
 //delete reminder
 router.delete('/:id', (req, res) => {
   reminderList.map(item => {
-     if (req.params.id === item.id){
-       item.event=""
-       item.reminder=""
-       res.send(item) 
-     }
+    if (req.params.id === item.id) {
+      item.event = ""
+      item.reminder = ""
+      res.send(item)
+    }
   });
-  
+
 })
 
 module.exports = router;
