@@ -5,6 +5,8 @@ const search=require('./routes/searchRoute')
 const reminder=require('./routes/reminderRoute')
 const categories=require('./routes/categoriesRoute')
 const users=require('./routes/userRoute')
+const PORT = process.env.PORT || 8080;
+
 // middleware
 app.use(cors());
 app.use(express.json());
@@ -15,6 +17,6 @@ app.use('/location',categories)
 app.use('/reminder',reminder)
 app.use('/login',users)
 // setting server to start
-app.listen(8080, () => {
-    console.log("server is ready");
-})
+app.listen(PORT, () => {
+    console.log("server is ready", PORT);
+});
