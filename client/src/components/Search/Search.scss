@@ -5,17 +5,49 @@
     display: flex;
     justify-content: center;
     margin-top:50px;
+   @include mobile(){
+       flex-direction: column;
+       align-items: center;
+   }
   }
+  
   .search{
+      @include mobile(){
+          display: flex;
+          flex-direction: column;
+      }
+      @include tablet(){
+        display: flex;
+      
+      }
+    &__mobile{
+        @include mobile(){
+            margin-top:20px;
+            display: flex;
+            
+        }
+    
+    }
        
     &__input{
-        
-        padding-left:20px;
-        border-radius:50px;
-        border:2px solid rgb(228, 220, 220);
         width: 400px;
         margin-right:10px;
+        padding-left:15px;
+        border-radius:50px;
+        border:1px solid rgb(228, 220, 220);
         height:40px;
+        @include tablet(){
+            width:180px;
+        }
+        @include desktop(){
+            width:400px;
+        }
+        @include mobile(){
+            width:200px;
+            margin-top:20px;
+          
+        }
+       
     }
     &__input:hover{
         outline: none;
@@ -31,9 +63,21 @@
         color: rgb(94, 91, 91);
         border: none;
         margin-right:15px;
+        margin-left:15px;
         text-align: center;
         font-weight: bold ;
+        @include tablet(){
+            width:70px;
+        }
+        @include desktop(){
+            width:80px;
+            margin-top:5px;
+        }
+        @include mobile(){
+            margin-left:8px;
 
+        }
+      
     }
     &__submit:hover{
       outline:none;
@@ -49,9 +93,19 @@
         margin-right:20px;
         width:200px;
         height:40px;
-        border:2px solid rgb(228, 220, 220);
+        border:1px solid rgb(228, 220, 220);
         box-shadow: #8a8181;
         border-radius:50px;
+        background-color: none;
+        @include tablet(){
+            width: 150px;;
+        }
+        @include desktop(){
+            width:200px;
+        }
+        @include mobile(){
+            margin-left:8px;
+        }
     }
     .favourits-search:focus{
         outline: none;
