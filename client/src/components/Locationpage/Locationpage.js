@@ -21,7 +21,7 @@ class Locationpage extends React.Component {
       .then(response => {
         let list = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())
         this.setState({ list: list, url: this.props.match.url })
-    }).catch(err => console.log(err))
+      }).catch(err => console.log(err))
   }
   item = ""
 
@@ -35,21 +35,21 @@ class Locationpage extends React.Component {
           this.setState({ list: list, url: this.props.match.url })
         }).catch(err => console.log(err))
     }
-      this.timeout = setTimeout(() => {
-        this.state.list.filter(item => {
-          if (item.reminder) {
-            axios.post(`http://localhost:8080/location/${this.props.match.params.category}`, item)
-              .then(response => {
-                if (response.data ) {
-                  this.item = item
-                  this.setState({ showModalTwo: true})
-                }
-              })
-              .catch(err => console.log(err))
-          }
-        })
-      }, 10000);
-    }
+    this.timeout = setTimeout(() => {
+      this.state.list.forEach(item => {
+        if (item.reminder) {
+          axios.post(`http://localhost:8080/location/${this.props.match.params.category}`, item)
+            .then(response => {
+              if (response.data) {
+                this.item = item
+                this.setState({ showModalTwo: true })
+              }
+            })
+            .catch(err => console.log(err))
+        }
+      })
+    }, 10000);
+  }
 
   //for reminder popup
   handleCloseModalTwo = (event) => {
@@ -110,18 +110,18 @@ class Locationpage extends React.Component {
       })
   }
 
-//removereminder
-  removeReminder=(name)=>{
-    let value = this.state.list.find(item => name.toLowerCase() ===item.name.toLowerCase() )
+  //removereminder
+  removeReminder = (name) => {
+    let value = this.state.list.find(item => name.toLowerCase() === item.name.toLowerCase())
     let id = value.id
     axios.delete(`http://localhost:8080/reminder/${id}`)
       .then(response => {
         axios.get('http://localhost:8080/location')
-        .then(response => {
-          this.setState({ list: response.data, url: this.props.match.url })
-          let reminderItems = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())
-          this.setState({ list: reminderItems, url: this.props.match.url })
-        }).catch(err => console.log(err))
+          .then(response => {
+            this.setState({ list: response.data, url: this.props.match.url })
+            let reminderItems = response.data.filter(item => item.category.toLowerCase() === this.props.match.params.category.toLowerCase())
+            this.setState({ list: reminderItems, url: this.props.match.url })
+          }).catch(err => console.log(err))
       })
   }
 
@@ -130,12 +130,11 @@ class Locationpage extends React.Component {
       <>
         <Header></Header>
         <section className="section-right">
-          {this.state.list.length >= 1 ? this.state.list.map(item => 
-          { return <Locationitem handleOpenModal={this.handleOpenModal} removeReminder={this.removeReminder}  deleteItem={this.deleteItem} getName={this.getName} key={item.id} data={item}></Locationitem> }) : 
-          <div className="placeholder">
-          <img className="placeholder__img"src={save} alt="save-icon"></img>
-          <h2 className="placeholder__text">No location saved</h2>
-          </div>}
+          {this.state.list.length >= 1 ? this.state.list.map(item => { return <Locationitem handleOpenModal={this.handleOpenModal} removeReminder={this.removeReminder} deleteItem={this.deleteItem} getName={this.getName} key={item.id} data={item}></Locationitem> }) :
+            <div className="placeholder">
+              <img className="placeholder__img" src={save} alt="save-icon"></img>
+              <h2 className="placeholder__text">No location saved</h2>
+            </div>}
         </section>
         <ReactModal
           isOpen={this.state.showModal}
@@ -143,15 +142,15 @@ class Locationpage extends React.Component {
           className="reminder-modal"
           overlayClassName="reminder-overlay"
           ariaHideApp={false}>
-          <form className="reminder">
-              <div className="reminder-one">
-                <p className="reminder-text">Reminder Date:</p>
-                <Date setDate={this.setDate}></Date>
-              </div>
-              <div className="reminder-one">
-                <p className="reminder-text">Event:</p>
-                <input className="event" onChange={this.setEvent} name="name"></input>
-              </div>
+          <form autoComplete="off" className="reminder">
+            <div className="reminder-one">
+              <p className="reminder-text">Reminder Date:</p>
+              <Date setDate={this.setDate}></Date>
+            </div>
+            <div className="reminder-one">
+              <p className="reminder-text">Event:</p>
+              <input className="event" onChange={this.setEvent} name="name"></input>
+            </div>
             <div className="reminder-allbuttons">
               <button className="reminder-button" onClick={this.saveReminder}>Save</button>
               <button className="reminder-button" onClick={this.handleCloseModal}>Cancel</button>

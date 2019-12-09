@@ -14,7 +14,7 @@ class Locationitem extends React.Component {
         event.preventDefault()
         this.props.deleteItem(this.props.data.name)
     }
-    deleteReminder=(event)=>{
+    deleteReminder = (event) => {
         event.preventDefault()
         this.props.removeReminder(this.props.data.name)
     }
@@ -37,12 +37,12 @@ class Locationitem extends React.Component {
                     </div><br></br>
                     <div><span className="item__title">Event:</span><span className="item__text">{this.props.data.event}</span></div><br></br>
                     <div className="item__allbutton">
-                    <button className="item__button-small " onClick={this.setReminder}>SET</button>
-                    <button className="item__button-small " onClick={this.deleteReminder}>REMOVE</button>
+                        <button className="item__button-small " onClick={this.setReminder}>SET</button>
+                        <button className="item__button-small " onClick={this.deleteReminder}>REMOVE</button>
                     </div>
                 </section>
-                  
-                </section>
+
+            </section>
         )
     }
 }

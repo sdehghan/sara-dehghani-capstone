@@ -135,7 +135,7 @@ class Allfavourits extends React.Component {
   //settimeout to check for reminder
   componentDidUpdate() {
     this.timeout = setTimeout(() => {
-      this.state.list.filter(item => {
+      this.state.list.forEach(item => {
         if (item.reminder) {
           axios.post(`http://localhost:8080/location/${this.props.match.params.category}`, item)
             .then(response => {
@@ -178,7 +178,7 @@ class Allfavourits extends React.Component {
           overlayClassName="reminder-overlay"
           ariaHideApp={false}
         >
-          <form className="reminder">
+          <form autoComplete="off" className="reminder">
             <div className="reminder-one">
               <p className="reminder-text">Reminder Date:</p>
               <Date setDate={this.setDate}></Date>
