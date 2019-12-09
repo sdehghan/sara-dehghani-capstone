@@ -1,6 +1,7 @@
 import React from 'react'
 import Locationitem from '../Locationitem/Locationitem'
 import './Allfavourits.scss'
+import save from '../../assets/Icon-save.png'
 import axios from 'axios'
 import Header from '../Header/Header';
 import ReactModal from 'react-modal';
@@ -163,7 +164,11 @@ class Allfavourits extends React.Component {
           <button className="favourits__refresh" onClick={this.refreshList}>REFRESH</button>
         </div>
         <section className="section-right">
-          {this.state.list.length >= 1 ? this.state.list.map(item => { return <Locationitem handleOpenModal={this.handleOpenModal} deleteItem={this.deleteItem} removeReminder={this.removeReminder} getName={this.getName} key={item.id} data={item}></Locationitem> }) : <h2 className="placeholder-text">No location saved</h2>}
+          {this.state.list.length >= 1 ? this.state.list.map(item => { return <Locationitem handleOpenModal={this.handleOpenModal} deleteItem={this.deleteItem} removeReminder={this.removeReminder} getName={this.getName} key={item.id} data={item}></Locationitem> }) : 
+          <div className="placeholder">
+          <img className="placeholder__img"src={save} alt="save-icon"></img>
+          <h2 className="placeholder__text">No location saved</h2>
+          </div>}
         </section>
         {/* modal to enter the date and event */}
         <ReactModal
@@ -180,7 +185,7 @@ class Allfavourits extends React.Component {
             </div>
             <div className="reminder-one">
               <p className="reminder-text">Event:</p>
-              <input onChange={this.setEvent} value={this.state.value} name="name"></input>
+              <input className="event" onChange={this.setEvent} value={this.state.value} name="name"></input>
             </div>
             <div className="reminder-allbuttons">
               <button className="reminder-button" onClick={this.saveReminder}>Save</button>

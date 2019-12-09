@@ -2,6 +2,7 @@ import React from 'react'
 import Locationitem from '../Locationitem/Locationitem'
 import './Locationpage.scss'
 import axios from 'axios'
+import save from '../../assets/Icon-save.png'
 import Header from '../Header/Header';
 import ReactModal from 'react-modal';
 import Date from '../Datepicker/Datepicker'
@@ -130,7 +131,11 @@ class Locationpage extends React.Component {
         <Header></Header>
         <section className="section-right">
           {this.state.list.length >= 1 ? this.state.list.map(item => 
-          { return <Locationitem handleOpenModal={this.handleOpenModal} removeReminder={this.removeReminder}  deleteItem={this.deleteItem} getName={this.getName} key={item.id} data={item}></Locationitem> }) : <h2 className="placeholder-text">No location saved</h2>}
+          { return <Locationitem handleOpenModal={this.handleOpenModal} removeReminder={this.removeReminder}  deleteItem={this.deleteItem} getName={this.getName} key={item.id} data={item}></Locationitem> }) : 
+          <div className="placeholder">
+          <img className="placeholder__img"src={save} alt="save-icon"></img>
+          <h2 className="placeholder__text">No location saved</h2>
+          </div>}
         </section>
         <ReactModal
           isOpen={this.state.showModal}
@@ -145,7 +150,7 @@ class Locationpage extends React.Component {
               </div>
               <div className="reminder-one">
                 <p className="reminder-text">Event:</p>
-                <input onChange={this.setEvent} name="name"></input>
+                <input className="event" onChange={this.setEvent} name="name"></input>
               </div>
             <div className="reminder-allbuttons">
               <button className="reminder-button" onClick={this.saveReminder}>Save</button>

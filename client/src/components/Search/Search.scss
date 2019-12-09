@@ -24,15 +24,13 @@
         @include mobile(){
             margin-top:20px;
             display: flex;
-            
         }
-    
     }
        
     &__input{
         width: 400px;
         margin-right:10px;
-        padding-left:15px;
+        padding-left:25px;
         border-radius:50px;
         border:1px solid rgb(228, 220, 220);
         height:40px;
@@ -46,8 +44,7 @@
             width:200px;
             margin-top:20px;
           
-        }
-       
+        } 
     }
     &__input:hover{
         outline: none;
@@ -60,7 +57,7 @@
         height:30px;
         background-color:#f0c4a3;
         border-radius:20px;
-        color: rgb(94, 91, 91);
+        color: rgb(92, 87, 87);
         border: none;
         margin-right:15px;
         margin-left:15px;
@@ -85,7 +82,17 @@
     &__submit:focus{
         outline:none;
       }
-
+    &__img-box{
+        position: relative;
+    }
+    &__icon{
+       position: absolute;
+       left:5px;
+       top:15px;
+    @include mobile{
+        top:30px;
+    }
+    }
     }
 
     .favourits-search{
@@ -142,8 +149,8 @@
         background-color: rgba(0, 0, 0, 0.5);
     }
     .modal-button{
-        width:50px;
-        height:30px;
+        width:40px;
+        height:25px;
         align-self: center;
        
         border-radius:10px;

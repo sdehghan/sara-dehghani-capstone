@@ -2,6 +2,7 @@ import React from 'react'
 import Locationsearch from '../Locationsearch/Locationsearch'
 import './Search.scss'
 import axios from 'axios'
+import search from '../../assets/Icon-search.svg'
 import ReactModal from 'react-modal';
 import Header from '../Header/Header';
 
@@ -82,15 +83,17 @@ class Search extends React.Component {
           </select>
 
           <form className="search" onSubmit={this.submitHandler}>
-            <input name="name" className="search__input" placeholder="Input your location name"></input>
+            <div className="search__img-box">
+              <img className="search__icon" src={search} alt="search" /><input name="name" className="search__input" placeholder="Input your location name"></input>
+            </div>
             <div className="search__mobile">
-            <button className="search__submit" type="submit">SEARCH</button>
-            <button className="search__submit" onClick={this.refreshList}>REFRESH</button>
+              <button className="search__submit" type="submit">SEARCH</button>
+              <button className="search__submit" onClick={this.refreshList}>REFRESH</button>
             </div>
           </form>
         </div>
         <section className="section-right">
-          {this.state.loc ? this.state.loc.map(item => {return <Locationsearch key={item.id} saveLocation={this.saveLocation} data={item}></Locationsearch> }) : null}
+          {this.state.loc ? this.state.loc.map(item => { return <Locationsearch key={item.id} saveLocation={this.saveLocation} data={item}></Locationsearch> }) : null}
         </section>
         <ReactModal
           isOpen={this.state.showModal}

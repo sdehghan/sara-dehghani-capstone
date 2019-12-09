@@ -1,0 +1,16 @@
+
+.react-datepicker-wrapper,.react-datepicker__input-container,.input{
+    border-radius:20px;
+}
+
+.react-datepicker__day--selected,.react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range, .react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--selected, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range {
+    background-color:  #f0c4a3;
+}
+
+.react-datepicker__day--keyboard-selected{
+    background-color:  #f0c4a3;
+}
+
+.react-datepicker__day--keyboard-selected:focus{
+    background-color:  #f0c4a3;
+}
